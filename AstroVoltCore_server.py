@@ -17,17 +17,27 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 
+import os
+
 BACKEND_DIR = Path(__file__).resolve().parent
 APP_ROOT = BACKEND_DIR.parent
+
+# create required folders automatically
+(APP_ROOT / "database").mkdir(exist_ok=True)
+(APP_ROOT / "exports").mkdir(exist_ok=True)
+(APP_ROOT / "exports" / "generated_pdfs").mkdir(parents=True, exist_ok=True)
+
 HTML_DIR = APP_ROOT / "frontend" / "html"
 CSS_DIR = APP_ROOT / "frontend" / "css"
 JS_DIR = APP_ROOT / "frontend" / "js"
 ASSETS_DIR = APP_ROOT / "assets"
+
 DATABASE_PATH = APP_ROOT / "database" / "quotations.db"
 HR_DATABASE_PATH = APP_ROOT / "database" / "hr.db"
 PDF_EXPORT_DIR = APP_ROOT / "exports" / "generated_pdfs"
+
 HOST = "0.0.0.0"
-PORT = 8765
+PORT = int(os.environ.get("PORT", 8765))
 SESSION_COOKIE = "avc_session"
 SESSION_TTL_HOURS = 12
 SESSIONS: dict[str, dict[str, object]] = {}
