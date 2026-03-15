@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore | Salary</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <img src="/logo.png" alt="AstroVoltCore logo" class="nav-logo">
+      <div>
+        <div class="nav-title">Salary Manager</div>
+        <div class="nav-subtitle">Monthly salary runs from attendance</div>
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <a class="mini-link" href="/home">Home</a>
+      <a class="mini-link" href="/quotation">Quotation</a>
+      <a class="mini-link" href="/invoice">Invoice</a>
+      <a class="mini-link" href="/employees">Employees</a>
+      <a class="mini-link" href="/attendance">Attendance</a>
+      <a class="mini-link" href="/holidays">Holidays</a>
+      <a class="mini-link active" href="/salary">Salary</a>
+      <button id="logoutBtn" class="action-btn ghost" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-grid no-stretch salary-grid">
+      <div class="form-panel compact">
+        <div class="panel-head">
+          <h2>Generate Salary</h2>
+        </div>
+        <form id="salaryForm" class="form-grid">
+          <label><span>Employee</span><select id="employeeSelect" class="field"></select></label>
+          <label><span>Month</span><input id="monthPicker" class="field" type="month"></label>
+          <label><span>Other Deductions</span><input id="otherDeductions" class="field" type="text" inputmode="decimal" value="0"></label>
+          <label><span>Advance</span><input id="advance" class="field" type="text" inputmode="decimal" value="0"></label>
+        </form>
+        <div class="form-actions">
+          <button id="generateBtn" class="action-btn primary" type="button">Generate Salary</button>
+        </div>
+
+        <div id="salaryPreview" class="salary-preview hidden"></div>
+      </div>
+
+      <div class="list-panel">
+        <div class="panel-head">
+          <h2>Salary Runs</h2>
+        </div>
+        <div class="filter-inline">
+          <label class="filter-row"><span>Month</span><input id="filterMonth" class="field" type="month"></label>
+          <label class="filter-row"><span>Sort By</span>
+            <select id="sortBy" class="field">
+              <option value="name">Name</option>
+              <option value="code">Employee ID</option>
+            </select>
+          </label>
+        </div>
+        <div id="salaryList" class="list-scroll"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/salary.js"></script>
+</body>
+</html>

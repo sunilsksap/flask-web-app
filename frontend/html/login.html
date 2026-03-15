@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore Login</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body class="auth-body">
+  <main class="auth-shell">
+    <section class="auth-card">
+      <div class="auth-brand">
+        <img src="/logo.png" alt="AstroVoltCore logo" class="auth-logo">
+        <div>
+          <h1>AstroVoltCore</h1>
+          <p>Unified internal system for quotations, employees, attendance, and salary.</p>
+        </div>
+      </div>
+
+      <div id="setupNotice" class="notice-bar hidden">
+        No admin account exists yet. Create one to start using AstroVoltCore.
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>
+          <span>Username</span>
+          <input id="loginUsername" class="field" type="text" autocomplete="username">
+        </label>
+        <label>
+          <span>Password</span>
+          <input id="loginPassword" class="field" type="password" autocomplete="current-password">
+        </label>
+        <button class="action-btn primary" type="submit">Sign In</button>
+      </form>
+
+      <form id="setupForm" class="auth-form hidden">
+        <label>
+          <span>Admin Username</span>
+          <input id="setupUsername" class="field" type="text" autocomplete="username">
+        </label>
+        <label>
+          <span>Admin Password</span>
+          <input id="setupPassword" class="field" type="password" autocomplete="new-password">
+        </label>
+        <button class="action-btn accent" type="submit">Create Admin</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>

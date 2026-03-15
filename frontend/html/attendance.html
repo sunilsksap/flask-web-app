@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore | Attendance</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <img src="/logo.png" alt="AstroVoltCore logo" class="nav-logo">
+      <div>
+        <div class="nav-title">Attendance</div>
+        <div class="nav-subtitle">Daily attendance + monthly summary</div>
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <a class="mini-link" href="/home">Home</a>
+      <a class="mini-link" href="/quotation">Quotation</a>
+      <a class="mini-link" href="/invoice">Invoice</a>
+      <a class="mini-link" href="/employees">Employees</a>
+      <a class="mini-link active" href="/attendance">Attendance</a>
+      <a class="mini-link" href="/holidays">Holidays</a>
+      <a class="mini-link" href="/salary">Salary</a>
+      <button id="logoutBtn" class="action-btn ghost" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-grid">
+      <div class="form-panel compact">
+        <div class="panel-head">
+          <h2>Daily Entry</h2>
+        </div>
+        <form id="attendanceForm" class="form-grid">
+          <label><span>Employee</span><select id="employeeSelect" class="field"></select></label>
+          <label><span>Date</span><input id="workDate" class="field" type="date"></label>
+          <label><span>Status</span>
+            <select id="status" class="field">
+              <option value="PRESENT">Present</option>
+              <option value="ABSENT">Absent</option>
+              <option value="HALF_DAY">Half Day</option>
+              <option value="LEAVE">Leave</option>
+              <option value="HOLIDAY">Holiday</option>
+              <option value="WEEK_OFF">Week Off</option>
+              <option value="LWP">Leave Without Pay</option>
+            </select>
+          </label>
+          <label><span>Overtime Hours</span><input id="overtimeHours" class="field" type="text" inputmode="decimal" value="0"></label>
+          <label class="wide"><span>Note</span><textarea id="note" class="field area-field"></textarea></label>
+        </form>
+        <div class="form-actions">
+          <button id="saveAttendanceBtn" class="action-btn primary" type="button">Save Attendance</button>
+        </div>
+      </div>
+
+      <div class="list-panel">
+        <div class="panel-head">
+          <h2>Monthly Summary</h2>
+        </div>
+        <div class="summary-grid-box">
+          <label><span>Month</span><input id="monthPicker" class="field" type="month"></label>
+          <div id="summaryCards" class="summary-cards"></div>
+        </div>
+        <div class="panel-head">
+          <h3>Entries</h3>
+        </div>
+        <div id="attendanceList" class="list-scroll"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/js/attendance.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore | Quotation Manager</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <img src="/logo.png" alt="AstroVoltCore logo" class="nav-logo">
+      <div>
+        <div class="nav-title">Quotation Manager</div>
+        <div class="nav-subtitle">AstroVoltCore</div>
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <a class="mini-link" href="/home">Home</a>
+      <a class="mini-link active" href="/quotation">Quotation</a>
+      <a class="mini-link" href="/invoice">Invoice</a>
+      <a class="mini-link" href="/employees">Employees</a>
+      <a class="mini-link" href="/attendance">Attendance</a>
+      <a class="mini-link" href="/holidays">Holidays</a>
+      <a class="mini-link" href="/salary">Salary</a>
+      <button id="logoutBtn" class="action-btn ghost" type="button">Logout</button>
+    </div>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-card">
+        <img src="/logo.png" alt="AstroVolt logo" class="brand-logo">
+        <div>
+          <h1>Quotation Manager</h1>
+          <p>SQLite-backed quotation register with draft, final lock, and revision history.</p>
+        </div>
+      </div>
+
+      <div class="db-card">
+        <div class="db-label">Database File</div>
+        <div class="db-path" id="databasePath">Loading...</div>
+      </div>
+
+      <div class="action-grid">
+        <button id="newQuoteBtn" class="action-btn primary" type="button">New Draft</button>
+        <button id="saveDraftBtn" class="action-btn secondary" type="button">Save Draft</button>
+        <button id="finalizeBtn" class="action-btn accent" type="button">Finalize & Lock</button>
+        <button id="reviseBtn" class="action-btn secondary" type="button">Create Revision</button>
+        <button id="printBtn" class="action-btn ghost" type="button">Save PDF</button>
+        <button id="pinBtn" class="action-btn ghost" type="button">Set / Change PIN</button>
+      </div>
+
+      <div class="search-wrap">
+        <input id="searchInput" class="search-input" type="search" placeholder="Search number or customer">
+      </div>
+
+      <div class="list-head">
+        <h2>Saved Quotations</h2>
+        <span id="recordCount">0</span>
+      </div>
+
+      <div id="quoteList" class="quote-list"></div>
+
+      <div class="db-card db-record-card">
+        <div class="list-head">
+          <h2>Database Record</h2>
+        </div>
+        <div id="dbRecordView" class="db-record-view">Open or save a quotation to see its full record details here.</div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-top">
+        <div>
+          <div class="eyebrow">Current Quotation</div>
+          <h2 id="currentDisplayNumber">Not selected</h2>
+        </div>
+        <div class="status-stack">
+          <span id="statusBadge" class="status-badge draft">Draft</span>
+          <span id="lockBadge" class="lock-badge">Editable</span>
+        </div>
+      </div>
+
+      <div class="notice-bar">
+        <div id="saveNotice">Open an existing quotation or create a new draft.</div>
+        <div id="securityNotice">PIN not set yet</div>
+      </div>
+
+      <section class="sheet">
+        <div class="sheet-top-line"></div>
+
+        <header class="sheet-header">
+          <div class="company-brand-row quote-brand-row">
+            <div class="sheet-logo-wrap">
+              <img src="/logo.png" alt="AstroVolt logo" class="sheet-logo">
+            </div>
+            <div class="company-title-stack">
+              <div id="companyNameStatic" class="fixed-title-text">AstroVolt Global LLP</div>
+              <div id="taglineStatic" class="fixed-tagline-text">Aerospace &amp; Defence | Healthcare Sterilization | Industrial Automation</div>
+            </div>
+            <div class="quote-badge">QUOTATION</div>
+          </div>
+          <div class="sheet-company">
+            <div class="company-grid-layout">
+              <div class="company-primary">
+                <div class="static-pair">
+                  <span>Address</span>
+                  <div id="companyAddressStatic" class="static-value">#7/31, 2nd Main Road, Domlur Layout, Bengaluru-560071.</div>
+                </div>
+                <div class="meta-grid company-meta-grid">
+                  <label><span>GSTIN</span><input id="companyGstin" class="field" type="text"></label>
+                  <div class="static-pair">
+                    <span>PAN</span>
+                    <div id="companyPanStatic" class="static-value">ACNFA6723D</div>
+                  </div>
+                  <div class="static-pair wide">
+                    <span>TAN</span>
+                    <div id="companyTanStatic" class="static-value">BLRA60131B</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="company-contact-card">
+                <label><span>Phone</span><input id="companyMobile" class="field" type="text"></label>
+                <div class="static-pair">
+                  <span>Email</span>
+                  <div id="companyEmailStatic" class="static-value">support@astrovoltglobal.com</div>
+                </div>
+                <div class="static-pair">
+                  <span>Website</span>
+                  <div id="companyWebsiteStatic" class="static-value">www.astrovoltglobal.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="quotation-data-strip">
+          <div class="quotation-data-title">
+            <div class="eyebrow">Quotation Particulars</div>
+            <div class="quotation-data-text">Issue date and validity period</div>
+          </div>
+          <div class="quotation-data-fields">
+            <label><span>Quote Date</span><input id="quoteDate" class="field" type="date"></label>
+            <label><span>Valid Until</span><input id="validUntil" class="field" type="date"></label>
+          </div>
+        </section>
+
+        <section class="hero-strip">
+          <div class="hero-line">
+            <div class="eyebrow">Quotation / Proforma</div>
+            <div class="hero-title">Formal technical quotation with controlled revisions</div>
+          </div>
+          <div class="quote-chip">
+            <span>Number</span>
+            <strong id="displayNumberChip">AVG-0000-000</strong>
+          </div>
+        </section>
+
+        <section class="customer-section">
+          <div class="card">
+            <h3>Customer Details</h3>
+            <div class="meta-grid">
+              <label><span>Customer Name</span><input id="customerName" class="field" type="text"></label>
+              <label><span>Contact Person</span><input id="customerContact" class="field" type="text"></label>
+              <label class="wide"><span>Address</span><textarea id="customerAddress" class="field area-field"></textarea></label>
+              <label><span>Mobile</span><input id="customerMobile" class="field" type="text"></label>
+              <label><span>GSTIN</span><input id="customerGstin" class="field" type="text"></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="items-section">
+          <div class="section-head">
+            <h3>Items</h3>
+            <button id="addItemBtn" class="mini-btn" type="button">+ Add Item</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 6%">Sl.</th>
+                  <th style="width: 34%">Description</th>
+                  <th style="width: 12%">HSN/SAC</th>
+                  <th style="width: 10%">Qty</th>
+                  <th style="width: 12%">Rate</th>
+                  <th style="width: 10%">Tax %</th>
+                  <th style="width: 12%">Line Total</th>
+                  <th style="width: 4%"></th>
+                </tr>
+              </thead>
+              <tbody id="itemsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="two-col-grid summary-grid">
+          <div class="card summary-note-card">
+            <h3>Commercial Summary</h3>
+            <div class="terms-compact-note">
+              Detailed commercial conditions are attached automatically on the following page.
+            </div>
+            <div class="amount-words-box">
+              <div class="eyebrow">Quoted Value in Words</div>
+              <div id="amountWords">Zero Only</div>
+            </div>
+          </div>
+
+          <div class="totals-card">
+            <div class="total-row"><span>Taxable Value</span><strong id="subTotal">0.00</strong></div>
+            <div class="total-row"><span>CGST</span><strong id="cgst">0.00</strong></div>
+            <div class="total-row"><span>SGST</span><strong id="sgst">0.00</strong></div>
+            <div class="total-row grand"><span>Total Payable</span><strong id="grandTotal">0.00</strong></div>
+          </div>
+        </section>
+
+        <section class="two-col-grid footer-grid">
+          <div class="card">
+            <h3>Bank Details</h3>
+            <div class="meta-grid">
+              <label><span>Account Name</span><input id="bankAccountName" class="field" type="text"></label>
+              <label><span>Bank Name</span><input id="bankName" class="field" type="text"></label>
+              <label><span>Account Number</span><input id="bankAccountNumber" class="field" type="text"></label>
+              <label><span>IFSC</span><input id="bankIfsc" class="field" type="text"></label>
+            </div>
+          </div>
+
+          <div class="card signatory-card">
+            <h3>Authorised Signatory</h3>
+            <div class="seal">Company Seal</div>
+            <div class="meta-grid">
+              <label class="wide"><span>Name</span><input id="signatoryName" class="field" type="text"></label>
+              <label class="wide"><span>Designation</span><input id="signatoryDesignation" class="field" type="text"></label>
+            </div>
+            <div class="print-signatory-block">
+              <div class="print-signatory-row">
+                <div class="print-signatory-label">Name</div>
+                <div id="signatoryNamePrint" class="print-signatory-value">Authorised Person</div>
+              </div>
+              <div class="print-signatory-row">
+                <div class="print-signatory-label">Designation</div>
+                <div id="signatoryDesignationPrint" class="print-signatory-value">Partner / Manager</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="print-terms-page">
+          <div class="print-terms-head">
+            <div class="eyebrow">Quotation Annexure</div>
+            <h3>Commercial Conditions</h3>
+            <p>These standard commercial conditions form part of this quotation and print automatically as the next page.</p>
+          </div>
+          <div id="termsList" class="terms-list print-terms-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

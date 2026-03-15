@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <img src="/logo.png" alt="AstroVoltCore logo" class="nav-logo">
+      <div>
+        <div class="nav-title">AstroVoltCore</div>
+        <div class="nav-subtitle">Unified internal operations hub</div>
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <button id="logoutBtn" class="action-btn ghost" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="home-shell">
+    <div class="home-orb orb-one"></div>
+    <div class="home-orb orb-two"></div>
+    <div class="home-orb orb-three"></div>
+
+    <section class="home-hero">
+      <div class="hero-kicker">Unified Operations Hub</div>
+      <h1>Welcome to AstroVoltCore</h1>
+      <p>Manage quotations, invoices, staff records, attendance, and monthly salary with one local system.</p>
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <span>Modules</span>
+          <strong>6</strong>
+        </div>
+        <div class="hero-metric">
+          <span>Data</span>
+          <strong>Local &amp; Secure</strong>
+        </div>
+        <div class="hero-metric">
+          <span>Exports</span>
+          <strong>PDF Ready</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-grid">
+      <a class="module-card" href="/quotation">
+        <div class="module-title">Quotation Desk</div>
+        <p>Create drafts, lock finals, manage revisions, and export PDFs.</p>
+        <span class="module-tag">Active</span>
+      </a>
+      <a class="module-card" href="/invoice">
+        <div class="module-title">Invoice Desk</div>
+        <p>Create tax invoices, import from quotations, and export PDFs.</p>
+        <span class="module-tag">Active</span>
+      </a>
+      <a class="module-card" href="/employees">
+        <div class="module-title">People Directory</div>
+        <p>Onboard staff, maintain employee master data, and track status.</p>
+        <span class="module-tag">Active</span>
+      </a>
+      <a class="module-card" href="/attendance">
+        <div class="module-title">Attendance Desk</div>
+        <p>Daily attendance entries with overtime hours and notes.</p>
+        <span class="module-tag">Active</span>
+      </a>
+      <a class="module-card" href="/holidays">
+        <div class="module-title">Holiday Calendar</div>
+        <p>Company holiday calendar applied to all employees.</p>
+        <span class="module-tag">Active</span>
+      </a>
+      <a class="module-card" href="/salary">
+        <div class="module-title">Payroll</div>
+        <p>Monthly salary runs based on attendance with deductions.</p>
+        <span class="module-tag">Active</span>
+      </a>
+    </section>
+  </main>
+
+  <script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore | Employees</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <img src="/logo.png" alt="AstroVoltCore logo" class="nav-logo">
+      <div>
+        <div class="nav-title">Employees</div>
+        <div class="nav-subtitle">Staff master data and status</div>
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <a class="mini-link" href="/home">Home</a>
+      <a class="mini-link" href="/quotation">Quotation</a>
+      <a class="mini-link" href="/invoice">Invoice</a>
+      <a class="mini-link active" href="/employees">Employees</a>
+      <a class="mini-link" href="/attendance">Attendance</a>
+      <a class="mini-link" href="/holidays">Holidays</a>
+      <a class="mini-link" href="/salary">Salary</a>
+      <button id="logoutBtn" class="action-btn ghost" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-grid narrow-left">
+      <div class="list-panel compact-panel">
+        <div class="panel-head">
+          <h2>Employee Directory</h2>
+          <div id="employeeCount" class="count-pill">0</div>
+        </div>
+        <input id="employeeSearch" class="field" type="search" placeholder="Search by name or code">
+        <div id="employeeList" class="list-scroll compact employee-list-scroll"></div>
+      </div>
+
+      <div class="form-panel compact">
+        <div class="panel-head">
+          <h2 id="formTitle">New Employee</h2>
+          <span id="employeeCode" class="chip">AVG00001</span>
+        </div>
+
+        <form id="employeeForm" class="form-grid">
+          <input type="hidden" id="employeeId">
+          <label><span>Full Name</span><input id="fullName" class="field" type="text"></label>
+          <label><span>Date of Birth</span><input id="dob" class="field" type="date"></label>
+          <div class="radio-group">
+            <div class="radio-title">Gender</div>
+            <label class="radio"><input type="radio" name="gender" value="Male">Male</label>
+            <label class="radio"><input type="radio" name="gender" value="Female">Female</label>
+            <label class="radio"><input type="radio" name="gender" value="Other">Other</label>
+          </div>
+          <label><span>Phone</span><input id="phone" class="field" type="text"></label>
+          <label><span>Email</span><input id="email" class="field" type="email"></label>
+          <label class="wide"><span>Address</span><textarea id="address" class="field area-field"></textarea></label>
+          <label><span>Date of Joining</span><input id="doj" class="field" type="date"></label>
+          <label><span>Department</span><input id="department" class="field" type="text"></label>
+          <label><span>Designation</span><input id="designation" class="field" type="text"></label>
+          <div class="radio-group">
+            <div class="radio-title">Employment Type</div>
+            <label class="radio"><input type="radio" name="employmentType" value="Permanent">Permanent</label>
+            <label class="radio"><input type="radio" name="employmentType" value="Contract">Contract</label>
+            <label class="radio"><input type="radio" name="employmentType" value="Intern">Intern</label>
+          </div>
+          <label><span>Status</span>
+            <select id="status" class="field">
+              <option value="ACTIVE">Active</option>
+              <option value="RESIGNED">Resigned</option>
+            </select>
+          </label>
+          <label><span>Base Salary (Monthly)</span><input id="baseSalary" class="field" type="text" inputmode="decimal"></label>
+          <label><span>Allowances (Monthly)</span><input id="allowances" class="field" type="text" inputmode="decimal"></label>
+          <div class="radio-group">
+            <div class="radio-title">PF Mode</div>
+            <label class="radio"><input type="radio" name="pfMode" value="PERCENT" checked>PF %</label>
+            <label class="radio"><input type="radio" name="pfMode" value="FIXED">Fixed PF (min 1800)</label>
+          </div>
+          <label><span>PF %</span><input id="pfPercent" class="field" type="text" inputmode="decimal"></label>
+          <label><span>PF Fixed Amount</span><input id="pfFixed" class="field" type="text" inputmode="decimal" value="1800"></label>
+          <label><span>ESI %</span><input id="esiPercent" class="field" type="text" inputmode="decimal"></label>
+          <label><span>Overtime Rate / Hour</span><input id="overtimeRate" class="field" type="text" inputmode="decimal"></label>
+          <label><span>Bank Name</span><input id="bankName" class="field" type="text"></label>
+          <label><span>Account Number</span><input id="bankAccount" class="field" type="text"></label>
+          <label><span>IFSC</span><input id="bankIfsc" class="field" type="text"></label>
+          <label><span>Emergency Contact Name</span><input id="emergencyName" class="field" type="text"></label>
+          <label><span>Emergency Contact Phone</span><input id="emergencyPhone" class="field" type="text"></label>
+          <label><span>Leave Balance (days)</span><input id="leaveBalance" class="field" type="text" inputmode="decimal"></label>
+          <div class="weekoff-block">
+            <div class="weekoff-title">Weekly Off Days</div>
+            <label class="check"><input type="checkbox" value="Mon">Mon</label>
+            <label class="check"><input type="checkbox" value="Tue">Tue</label>
+            <label class="check"><input type="checkbox" value="Wed">Wed</label>
+            <label class="check"><input type="checkbox" value="Thu">Thu</label>
+            <label class="check"><input type="checkbox" value="Fri">Fri</label>
+            <label class="check"><input type="checkbox" value="Sat">Sat</label>
+            <label class="check"><input type="checkbox" value="Sun">Sun</label>
+          </div>
+        </form>
+
+        <div class="form-actions">
+          <button id="newEmployeeBtn" class="action-btn ghost" type="button">New</button>
+          <button id="saveEmployeeBtn" class="action-btn primary" type="button">Save</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/employees.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroVoltCore | Holidays</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <img src="/logo.png" alt="AstroVoltCore logo" class="nav-logo">
+      <div>
+        <div class="nav-title">Holiday Manager</div>
+        <div class="nav-subtitle">Company holiday calendar</div>
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <a class="mini-link" href="/home">Home</a>
+      <a class="mini-link" href="/quotation">Quotation</a>
+      <a class="mini-link" href="/invoice">Invoice</a>
+      <a class="mini-link" href="/employees">Employees</a>
+      <a class="mini-link" href="/attendance">Attendance</a>
+      <a class="mini-link active" href="/holidays">Holidays</a>
+      <a class="mini-link" href="/salary">Salary</a>
+      <button id="logoutBtn" class="action-btn ghost" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-grid">
+      <div class="list-panel">
+        <div class="panel-head">
+          <h2>Holiday List</h2>
+          <div id="holidayCount" class="count-pill">0</div>
+        </div>
+        <input id="holidaySearch" class="field" type="search" placeholder="Search by date or title">
+        <div id="holidayList" class="list-scroll holiday"></div>
+      </div>
+      <div class="form-panel compact">
+        <div class="panel-head">
+          <h2>Add Holiday</h2>
+        </div>
+        <form id="holidayForm" class="form-grid">
+          <label><span>Date</span><input id="holidayDate" class="field" type="date"></label>
+          <label><span>Title</span><input id="holidayTitle" class="field" type="text" placeholder="Festival / Company Holiday"></label>
+        </form>
+        <div class="form-actions">
+          <button id="saveHolidayBtn" class="action-btn primary" type="button">Save Holiday</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/holidays.js"></script>
+</body>
+</html>
